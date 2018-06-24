@@ -1,6 +1,5 @@
 package com.snowball;
 
-import java.util.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.By;
@@ -23,10 +22,7 @@ public class Main {
         //get the actual value of the title
         actualTitle = driver.getTitle();
 
-        if(actualTitle.contentEquals(expectedTitle)){
-            System.out.println("Connected");
-        }
-        else{
+        if(!actualTitle.contentEquals(expectedTitle)){
             System.out.println("Connection Failed");
             System.exit(0);
         }
@@ -40,7 +36,19 @@ public class Main {
         WebElement ws = driver.findElement(By.id("wob_ws"));    //풍속
 
         PrintUI printer = new PrintUI();
+        printer.printInterface();
 
+        String info[] = {
+                loc.getText(),
+                dts.getText(),
+                dc.getText(),
+                "기온 : "+tm.getText()+"°C",
+                "강수확률 : "+pp.getText(),
+                "습도 : "+hm.getText(),
+                "풍속 : "+ws.getText()
+        };
+
+        printer.printText(info);
 
         //close chrome
         driver.close();
