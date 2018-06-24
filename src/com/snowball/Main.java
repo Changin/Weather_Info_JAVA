@@ -31,13 +31,16 @@ public class Main {
             System.exit(0);
         }
 
-        WebElement loc = driver.findElement(By.id("wob_loc"));              //위치
-        WebElement dts = driver.findElement(By.id("wob_dts"));              //날짜,시간
-        WebElement dc = driver.findElement(By.id("wob_dc"));                //대기정보
-        WebElement tm = driver.findElement(By.id("wob_tm"));                //온도
-        WebElement pp = driver.findElement(By.id("wob_pp"));                //강수확률
-        WebElement hm = driver.findElement(By.id("wob_hm"));                //습도
-        WebElement ws = driver.findElement(By.id("wob_ws"));                //풍속
+        WebElement loc = driver.findElement(By.id("wob_loc"));  //위치
+        WebElement dts = driver.findElement(By.id("wob_dts"));  //날짜,시간
+        WebElement dc = driver.findElement(By.id("wob_dc"));    //대기정보
+        WebElement tm = driver.findElement(By.id("wob_tm"));    //온도
+        WebElement pp = driver.findElement(By.id("wob_pp"));    //강수확률
+        WebElement hm = driver.findElement(By.id("wob_hm"));    //습도
+        WebElement ws = driver.findElement(By.id("wob_ws"));    //풍속
+
+        PrintUI printer = new PrintUI();
+
 
         //close chrome
         driver.close();
