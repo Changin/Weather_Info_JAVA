@@ -1,5 +1,6 @@
 package com.snowball;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.By;
@@ -7,13 +8,12 @@ import org.openqa.selenium.WebElement;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException{
         System.setProperty("Webdriver.chrome.driver", "chromedriver");
         WebDriver driver = new ChromeDriver();
 
-        String baseUrl = "https://www.google.co.kr/search?q=%EB%82%A0%EC%94%A8&oq=%EB%82%A0%EC%94%A8&aqs=" +
-                "chrome..69i57j0l5.1760j0j7&sourceid=chrome&ie=UTF-8";
-        String expectedTitle = "날씨 - Google 검색";
+        String baseUrl = "https://www.google.co.kr/";
+        String expectedTitle = "Google";
         String actualTitle = "";
 
         //launch Chrome and direct it to Base URL
@@ -24,8 +24,14 @@ public class Main {
 
         if(!actualTitle.contentEquals(expectedTitle)){
             System.out.println("Connection Failed");
+            driver.close();
             System.exit(0);
         }
+
+        String inputString = "weather";
+        WebElement src = driver.findElement(By.id("lst-ib"));
+        src.sendKeys(inputString);
+        src.sendKeys(Keys.RETURN);
 
         WebElement loc = driver.findElement(By.id("wob_loc"));  //위치
         WebElement dts = driver.findElement(By.id("wob_dts"));  //날짜,시간
@@ -39,13 +45,13 @@ public class Main {
         printer.printInterface();
 
         String info[] = {
-                loc.getText(),
-                dts.getText(),
-                dc.getText(),
-                "기온 : "+tm.getText()+"°C",
-                "강수확률 : "+pp.getText(),
-                "습도 : "+hm.getText(),
-                "풍속 : "+ws.getText()
+                "위치 : \t\t"+loc.getText(),
+                "기준시각 : \t"+dts.getText(),
+                "날씨 : \t\t"+dc.getText(),
+                "기온 : \t\t"+tm.getText()+"°C",
+                "강수확률 : \t"+pp.getText(),
+                "습도 : \t\t"+hm.getText(),
+                "풍속 : \t\t"+ws.getText()
         };
 
         printer.printText(info);
