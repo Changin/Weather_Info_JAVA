@@ -12,7 +12,7 @@ public class PrintUI extends PrintDataAb {
     }
     public void printInterface(){
         System.out.println("---------------------------------------------------");
-        System.out.println("\t\tWeather Info");
+        System.out.println("\t\tWeather Info v1.0");
         System.out.println("\t\tCopyright (c) by ChangIn Baek 2018");
         System.out.println("---------------------------------------------------");
     }
